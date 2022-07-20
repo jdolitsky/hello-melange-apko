@@ -32,7 +32,7 @@ runs:
       with:
         config: apko.yaml
         tag: ghcr.io/${{ github.repository }}/${{ inputs.variant }}
-        keyring-append: /github/workspace/melange.rsa.pub
+        keyring-append: /work/melange.rsa.pub
         archs: ${{ inputs.archs }}
 
     - name: Load image from apko-produced tarball

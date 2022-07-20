@@ -123,8 +123,8 @@ Build an apk for all architectures using melange:
 GITHUB_USERNAME="myuser"
 REF="ghcr.io/${GITHUB_USERNAME}/hello-melange-apko/$(basename "${PWD}")"
 
-docker run --rm -it -v $(pwd):/github/workspace -w /github/workspace \
-    -v $(pwd)/packages:/github/workspace/packages \
+docker run --rm -it -v $(pwd):/work -w /work \
+    -v $(pwd)/packages:/work/packages \
     distroless.dev/apko build --debug apko.yaml \
     "${REF}" output.tar -k melange.rsa.pub \
     --build-arch amd64,aarch64,armv7
@@ -138,8 +138,8 @@ docker run --rm "${REF}"
 
 To debug the above:
 ```
-docker run --rm -it -v $(pwd):/github/workspace -w /github/workspace \
-    -v $(pwd)/packages:/github/workspace/packages \
+docker run --rm -it -v $(pwd):/work -w /work \
+    -v $(pwd)/packages:/work/packages \
     -e REF="${REF}" \
     --entrypoint sh \
     distroless.dev/apko
@@ -159,8 +159,8 @@ REF="ghcr.io/${GITHUB_USERNAME}/hello-melange-apko/$(basename "${PWD}")"
 # A personal access token with the "write:packages" scope
 GITHUB_TOKEN="*****"
 
-docker run --rm -it -v $(pwd):/github/workspace -w /github/workspace \
-    -v $(pwd)/packages:/github/workspace/packages \
+docker run --rm -it -v $(pwd):/work -w /work \
+    -v $(pwd)/packages:/work/packages \
     -e REF="${REF}" \
     -e GITHUB_USERNAME="${GITHUB_USERNAME}" \
     -e GITHUB_TOKEN="${GITHUB_TOKEN}" \
